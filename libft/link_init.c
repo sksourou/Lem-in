@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   link_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sksourou <sksourou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmathe <dmathe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/26 23:06:59 by sksourou          #+#    #+#             */
-/*   Updated: 2015/01/26 23:07:00 by sksourou         ###   ########.fr       */
+/*   Created: 2015/06/16 18:15:54 by dmathe            #+#    #+#             */
+/*   Updated: 2015/06/16 18:21:20 by dmathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+t_list	*link_init(void *data)
 {
-	if (alst && del)
-	{
-		del((*alst)->content, (*alst)->content_size);
-		free(*alst);
-	}
-	*alst = NULL;
+	t_list *new_link;
+
+	new_link = malloc(sizeof(*data));
+	new_link->data = data;
+	new_link->next = NULL;
+	new_link->prev = NULL;
+	return (new_link);
 }

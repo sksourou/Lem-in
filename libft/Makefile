@@ -16,6 +16,12 @@ NAME = libft.a
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 SRC = ft_atoi.c\
+	link_init.c\
+	list_end.c\
+	list_second.c\
+	print_list.c\
+	list_swap_data.c\
+	list_add.c\
 	ft_bzero.c\
 	ft_isalnum.c\
 	ft_isalpha.c\
@@ -71,13 +77,6 @@ SRC = ft_atoi.c\
 	ft_strtrim.c\
 	ft_tolower.c\
 	ft_toupper.c\
-	ft_lstdel.c\
-	ft_lstnew.c\
-	ft_lstdelone.c\
-	ft_lstadd.c\
-	ft_lstadd.c\
-	ft_lstmap.c\
-	ft_lstiter.c\
 	ft_strrev.c \
 	get_next_line.c
 

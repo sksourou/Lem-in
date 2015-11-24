@@ -12,64 +12,54 @@
 
 #include "libft.h"
 
-static int		gnl_check_stock(char **stock, char **line)
+void				stock_line(char *buf, char *line, int *i, int *var)
 {
-	char			*tmp;
+	static int		j = 0;
 
-	if ((tmp = ft_strchr(*stock, '\n')))
+	while (buf[*i])
 	{
-		*tmp = '\0';
-		*line = ft_strdup(*stock);
-		free(*stock);
-		*stock = ft_strdup(tmp + 1);
-		tmp = NULL;
-		return (1);
+		if (buf[*i] == '\n')
+		{
+			var[INDICE] = 1;
+			(*i)++;
+			line[j] = '\0';
+			j = 0;
+			return ;
+		}
+		else
+		{
+			line[j] = buf[*i];
+			(*i)++;
+			j++;
+		}
 	}
-	return (0);
+	line[j] = '\0';
+	*i = 0;
+	var[A] = 2;
 }
 
-static int		gnl_check_read(char *buffer, char **stock, char **line)
+int					get_next_line(int const fd, char **line)
 {
-	char			*tmp;
+	static char		buf[BUFF_SIZE + 1];
+	static int		i = 0;
+	int				var[3];
 
-	if ((tmp = ft_strchr(buffer, '\n')))
-	{
-		*tmp = '\0';
-		*line = ft_strjoin(*stock, buffer);
-		free(*stock);
-		*stock = ft_strdup(tmp + 1);
-		tmp = NULL;
-		free(buffer);
-		return (1);
-	}
-	return (0);
-}
-
-int				get_next_line(int const fd, char **line)
-{
-	static char		*stock = NULL;
-	char			*buffer;
-	int				ret;
-
-	if (!line || !(buffer = ft_strnew(BUFF_SIZE)))
+	var[INDICE] = 0;
+	*line = (char *)malloc(sizeof(char) * (BUFF_SIZE + 4096));
+	if (line == NULL)
 		return (-1);
-	if (stock)
-		if (gnl_check_stock(&stock, line))
-			return (1);
-	while ((ret = read(fd, buffer, BUFF_SIZE)) > 0)
+	while (var[INDICE] == 0)
 	{
-		buffer[ret] = '\0';
-		if (gnl_check_read(buffer, &stock, line))
-			return (1);
-		stock = ft_strjoin(stock, buffer);
+		if (i == 0)
+		{
+			var[RET] = read(fd, buf, BUFF_SIZE);
+			if (var[RET] < 0)
+				return (-1);
+			if (var[RET] == 0)
+				return ((var[A] == 2 && var[RET] != 0) ? 1 : 0);
+			buf[var[RET]] = '\0';
+		}
+		stock_line(buf, *line, &i, var);
 	}
-	free(buffer);
-	if (ret == -1 || line == NULL)
-		return (-1);
-	if (stock == NULL)
-		return (0);
-	*line = ft_strdup(stock);
-	free(stock);
-	stock = NULL;
-	return (0);
+	return (1);
 }

@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   list_add.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sksourou <sksourou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/26 23:06:43 by sksourou          #+#    #+#             */
-/*   Updated: 2015/01/26 23:06:45 by sksourou         ###   ########.fr       */
+/*   Created: 2015/06/22 20:52:59 by dmathe            #+#    #+#             */
+/*   Updated: 2015/06/22 20:53:02 by dmathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void		list_add_next(t_list **list, t_list *link)
 {
-	t_list	*next_list;
 	t_list	*tmp;
 
-	tmp = *alst;
-	while (tmp)
+	tmp = *list;
+	if (link)
 	{
-		next_list = tmp->next;
-		del(tmp->content, tmp->content_size);
-		free(tmp);
-		tmp = next_list;
+		if (!tmp)
+			*list = link;
+		else
+		{
+			while (tmp->next)
+				tmp = tmp->next;
+			tmp->next = link;
+			link->prev = tmp;
+			link->next = NULL;
+		}
 	}
-	*alst = NULL;
 }

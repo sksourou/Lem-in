@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sksourou <sksourou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/26 23:06:26 by sksourou          #+#    #+#             */
-/*   Updated: 2015/01/26 23:06:28 by sksourou         ###   ########.fr       */
+/*   Created: 2015/11/24 16:03:38 by dmathe            #+#    #+#             */
+/*   Updated: 2015/11/24 16:03:45 by dmathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LEM_IN_H
+# define LEM_IN_H
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
-{
-	if (alst && new)
-	{
-		new->next = *alst;
-		*alst = new;
-	}
-}
+
+
+#endif

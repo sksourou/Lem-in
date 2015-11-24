@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   print_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sksourou <sksourou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/26 23:07:13 by sksourou          #+#    #+#             */
-/*   Updated: 2015/01/26 23:07:14 by sksourou         ###   ########.fr       */
+/*   Created: 2015/11/23 15:03:36 by dmathe            #+#    #+#             */
+/*   Updated: 2015/11/24 18:21:11 by dmathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void	print_list(t_list *list)
 {
-	t_list	*list_next;
-
-	while (lst)
+	if (list)
 	{
-		list_next = lst->next;
-		f(lst);
-		lst = list_next;
+		while (list)
+		{
+			ft_putstr((char *)list->data);
+			ft_putchar('\n');
+			list = list->next;
+		}
 	}
 }

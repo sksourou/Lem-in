@@ -6,7 +6,7 @@
 /*   By: sksourou <sksourou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/26 23:23:01 by sksourou          #+#    #+#             */
-/*   Updated: 2015/07/27 20:55:03 by sksourou         ###   ########.fr       */
+/*   Updated: 2015/11/24 18:16:56 by dmathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@
 # include <fcntl.h>
 
 # define BUFF_SIZE 42
+# define A			0
+# define INDICE		1
+# define RET		2
 
-
-typedef struct		s_list
+typedef struct s_list
 {
-	void			*content;
-	size_t			content_size;
+	void			*data;
 	struct s_list	*next;
-}					t_list;
+	struct s_list	*prev;
+}				t_list;
 
+void		stock_line(char *buf, char *line, int *i, int *var);
+int			get_next_line(int const fd, char **line);
 char				*ft_strncat(char *s1, char const *s2, size_t n);
 size_t				ft_strlcat(char *dst, char const *src, size_t size);
 char				*ft_strcat(char *s1, char const *s2);
@@ -83,12 +87,13 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl(char const *s);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-t_list				*ft_lstnew(void const *content, size_t content_size);
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-void				ft_lstdelone(t_list **alst, void(*del)(void *, size_t));
-void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstadd(t_list **alst, t_list *new);
-void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 int					get_next_line(int const fd, char **line);
+size_t				list_size(t_list *list);
+t_list				*link_init(void *data);
+t_list				*list_end(t_list *list);
+t_list				*list_second(t_list *list);
+void				list_swap_data(t_list *l1, t_list *l2);
+void				list_add_next(t_list **list, t_list *link);
+void				print_list(t_list *list);
 
 #endif

@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   list_second.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sksourou <sksourou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/26 23:07:26 by sksourou          #+#    #+#             */
-/*   Updated: 2015/01/26 23:07:28 by sksourou         ###   ########.fr       */
+/*   Created: 2015/06/26 21:43:21 by dmathe            #+#    #+#             */
+/*   Updated: 2015/06/26 21:43:24 by dmathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_list		*list_second(t_list *list)
 {
-	t_list	*new;
-	t_list	*tmp;
+	t_list	*link;
 
-	if (!lst)
-		return (NULL);
-	new = f(lst);
-	tmp = new;
-	lst = lst->next;
-	while (lst)
+	link = NULL;
+	if (list)
 	{
-		tmp->next = f(lst);
-		tmp = tmp->next;
-		lst = lst->next;
+		list = list->next;
+		link = list;
 	}
-	tmp->next = NULL;
-	return (new);
+	return (link);
 }
