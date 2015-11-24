@@ -17,6 +17,11 @@
 # include <stdlib.h>
 # include "libft.h"
 
+typedef struct s_infos
+{
+	int 		start;
+	int 		end;
+}				t_infos;
 
 
 #endif

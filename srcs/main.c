@@ -13,13 +13,11 @@
 #include "lem_in.h"
 #include <stdlib.h>
 
-// void	init(t_list *map)
-// {
-// 	map->posy = 0;
-// 	map->posx = 0;
-// 	map->start = 0;
-// 	map->end = 0;
-// }
+void	init(t_infos *infos)
+{
+	infos->start = 0;
+	infos->end = 0;
+}
 
 void	stock_map(t_list *map)
 {
@@ -37,12 +35,13 @@ void	stock_map(t_list *map)
 int		main(int ac, char **av)
 {	
 	t_list	*map;
+	t_infos	infos;
 
 	(void)av;
 	if (ac != 1)
 		return (0);
 	map = NULL;
-	//init(map);
+	init(&infos);
 	stock_map(map);
 	return (0);
 }
