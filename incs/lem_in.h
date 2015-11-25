@@ -19,9 +19,12 @@
 
 typedef struct s_infos
 {
+	char 		*name;
 	int 		start;
 	int 		end;
+	int			nbr_ants;
 }				t_infos;
 
-
+int 	ft_isdigits(char *str);
+int		check_map(char *str, t_infos *infos);
 #endif

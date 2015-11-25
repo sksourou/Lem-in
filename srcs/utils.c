@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sksourou <sksourou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sksourou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/26 23:13:58 by sksourou          #+#    #+#             */
-/*   Updated: 2015/01/26 23:13:59 by sksourou         ###   ########.fr       */
+/*   Created: 2015/11/25 18:43:08 by sksourou          #+#    #+#             */
+/*   Updated: 2015/11/25 18:43:10 by sksourou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int 	ft_isdigits(char *str)
 {
 	int i;
 
 	i = 0;
-
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	if (s1[i] == '\0' && s2[i] == '\0')
-		return (1);
-	return (0);
+	while(str[i])
+	{
+		if (str[i] >= 48 && str[i] <= 57)
+		{
+			i++;
+		}
+ 		else
+			return (0);
+	}
+	return (1);
 }

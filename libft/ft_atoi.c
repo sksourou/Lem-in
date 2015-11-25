@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_atoi(char const *s)
+int	ft_atoi(char *s)
 {
 	unsigned int	digit;
 	int				positive;
