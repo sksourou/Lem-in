@@ -23,24 +23,23 @@ void	init(t_infos *infos)
 void	stock_map(t_list *map, t_infos *infos)
 {
 	char *line;
+	t_room	*room;
 
+	room = NULL;
 	while(get_next_line(0, &line) != 0)
 	{
 		list_add_next(&map, link_init((void *)line));
-		if (check_map(line, infos) == 0)
+		if (check_map(line, infos, room) == 0)
 				break ;
 	}
-	//print_list(map);
+	print_list((t_list *)room);
 }
 
-int		main(int ac, char **av)
-{	
+int		main(void)
+{
 	t_list	*map;
 	t_infos	infos;
 
-	(void)av;
-	if (ac != 1)
-		return (0);
 	map = NULL;
 	init(&infos);
 	stock_map(map, &infos);

@@ -28,8 +28,9 @@ typedef struct s_list
 	struct s_list	*prev;
 }				t_list;
 
-void		stock_line(char *buf, char *line, int *i, int *var);
-int			get_next_line(int const fd, char **line);
+
+void				stock_line(char *buf, char *line, int *i, int *var);
+int					get_next_line(int const fd, char **line);
 char				*ft_strncat(char *s1, char const *s2, size_t n);
 size_t				ft_strlcat(char *dst, char const *src, size_t size);
 char				*ft_strcat(char *s1, char const *s2);
@@ -40,7 +41,7 @@ void				ft_putnbr(int n);
 int					ft_isalpha(int c);
 char				ft_isdigit(char c);
 int					ft_isalnum(int c);
-int					ft_isascii(int c);
+int					ft_isascii(char c);
 int					ft_isprint(int c);
 int					ft_islower(int c);
 int					ft_isupper(int c);

@@ -12,6 +12,15 @@
 
 #include "lem_in.h"
 
+void	print_room(t_room *room)
+{	
+		while (room)
+		{
+			ft_putendl(room->name);
+			room = room->next;
+		}
+}
+
 int 	ft_isdigits(char *str)
 {
 	int i;
@@ -23,6 +32,21 @@ int 	ft_isdigits(char *str)
 		{
 			i++;
 		}
+ 		else
+			return (0);
+	}
+	return (1);
+}
+
+int 	ft_isasciis(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i])
+	{
+		if (str[i] >= 32 && str[i] <= 126)
+			i++;
  		else
 			return (0);
 	}

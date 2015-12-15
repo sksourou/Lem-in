@@ -73,12 +73,14 @@ static int		check_pos_start(char *str, t_infos *infos)
 	i = 0;
 	if (infos->start < 2 || infos->end < 2)
 	{
-		name = ft_strsplit(str, ' ');
+		if ((name = ft_strsplit(str, ' ')) == 0)
+			return (0);
 		if (ft_isdigits(name[1]) == 0 || ft_isdigits(name[2]) == 0)
 			{
 				ft_putendl("Bad position");
 				return (0);
 			}
+		list_add_next((t_list **)&room, link_init((t_list *)split[0]));
 			infos->start++;
 			infos->end++;
 		return (1);
@@ -86,29 +88,34 @@ static int		check_pos_start(char *str, t_infos *infos)
 	return (0);
 }
 
-int check_pos(char *str)
+int check_pos(char *str, t_room *room)
 {
 	char **split;
 	int i;
 
 	i = 0;
-	split = ft_strsplit(str, ' ');
-	while (i != 3 && ft_isdigits(split[i]) == 1)
+	if ((split = ft_strsplit(str, ' ')) == 0)
+		return(0);
+	while (i != 3 && ft_isasciis(split[i]) == 1)
 		i++;
 	if (i == 3)
+	{
+		list_add_next((t_list **)&room, link_init((t_list *)split[0]));
+//		print_room(room);
 		return (1);
+	}
 	return (0);
 }
-int		check_map(char *str, t_infos *infos)
+int		check_map(char *str, t_infos *infos, t_room *room)
 {
-		ft_putendl(str);
+	print_room(room);
 	if (check_ants(str, infos) == 1)
 		return (1);
 	else if (check_start(str, infos) == 1)
 	 	return (1);
 	else if (check_pos_start(str, infos) == 1)
 	 	return (1);
-	else if(check_pos(str) == 1)
+	else if(check_pos(str, room) == 1)
 		return (1);
 	else if(check_tubes(str, infos) == 1)
 	 	return (1);

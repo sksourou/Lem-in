@@ -46,6 +46,17 @@ static int		ft_wlen(const char *s, char c)
 	return (len);
 }
 
+int 			check_char(char const *s, char c)
+{
+	while (*s)
+	{
+		if (*s == c)
+			return (1);
+		s++;
+	}
+	return (0);
+}
+
 char			**ft_strsplit(char const *s, char c)
 {
 	char	**t;
@@ -53,6 +64,8 @@ char			**ft_strsplit(char const *s, char c)
 	int		index;
 
 	index = 0;
+	if (check_char(s, c) == 0)
+		return (0);
 	nb_word = ft_cnt_parts((const char *)s, c);
 	t = (char **)malloc(sizeof(*t) * (ft_cnt_parts((const char *)s, c) + 1));
 	if (t == NULL)
