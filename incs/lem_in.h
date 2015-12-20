@@ -23,13 +23,12 @@ typedef struct  s_link
 	struct s_room	*target;
 }				t_link;
 
-typedef struct 	s_room
-{
-	char		*name;
-	struct s_room	*next;
-	struct s_room	*prev;
-	t_link			*link;
 
+typedef struct s_room // data du t_list
+{
+	char 			*name;		// name
+	struct s_room	**neighbors; // liens vers tous les voisins
+	int				ant_nb;		// nombre de fourmis
 }				t_room;
 
 typedef struct s_infos
@@ -39,9 +38,12 @@ typedef struct s_infos
 	int			nbr_ants;
 }				t_infos;
 
-void	print_room(t_room *room);
+// void	room_add_next(t_room **room, t_room *link);
+void	print_rooms(t_list *rooms);
+t_list *create_room(char const *name);
 int 	ft_isasciis(char *str);
 int 	ft_isdigits(char *str);
-int		check_map(char *str, t_infos *infos, t_room *room);
+int		check_map(char *str, t_infos *infos, t_list **rooms);
+void	stock_map(t_list *map, t_infos *infos, t_list **rooms);
 
 #endif

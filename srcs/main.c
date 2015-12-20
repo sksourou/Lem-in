@@ -20,28 +20,29 @@ void	init(t_infos *infos)
 	infos->nbr_ants = 0;
 }
 
-void	stock_map(t_list *map, t_infos *infos)
+void	stock_map(t_list *map, t_infos *infos, t_list **rooms)
 {
 	char *line;
-	t_room	*room;
 
-	room = NULL;
 	while(get_next_line(0, &line) != 0)
 	{
 		list_add_next(&map, link_init((void *)line));
-		if (check_map(line, infos, room) == 0)
+		if (check_map(line, infos, rooms) == 0)
 				break ;
 	}
-	print_list((t_list *)room);
+	print_list(map);
 }
 
 int		main(void)
 {
 	t_list	*map;
 	t_infos	infos;
+	t_list	*rooms;
 
+	rooms = NULL;
 	map = NULL;
 	init(&infos);
-	stock_map(map, &infos);
+	stock_map(map, &infos, &rooms);
+	print_rooms(rooms);
 	return (0);
 }

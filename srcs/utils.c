@@ -12,15 +12,6 @@
 
 #include "lem_in.h"
 
-void	print_room(t_room *room)
-{	
-		while (room)
-		{
-			ft_putendl(room->name);
-			room = room->next;
-		}
-}
-
 int 	ft_isdigits(char *str)
 {
 	int i;
@@ -51,4 +42,48 @@ int 	ft_isasciis(char *str)
 			return (0);
 	}
 	return (1);
+}
+
+
+t_list *create_room(char const *name)
+{
+	t_list *new_link;
+	t_room *room;
+
+	if ((new_link = malloc(sizeof(*new_link))))
+	{
+		if ((room = malloc(sizeof(*room))))
+		{
+			room->name = ft_strdup(name);
+			room->ant_nb = 0;
+			room->neighbors = NULL;
+			new_link->data = (void *)room;
+		}
+		else
+		{
+			free(new_link);
+			return (NULL);
+		}
+	}
+	return (new_link);
+}
+
+void	print_rooms(t_list *rooms)
+{
+	// attention roomS = t_list, room = t_room;
+	t_room *room; //temporaire pour eviter le cast
+	int i = 0;
+
+	if (rooms)
+	{
+		while (rooms)
+		{
+			room = rooms->data;
+			printf("ROOM[%d] = name: %s, ant_nb = %d, neightbors_ptr = %p\n", i, room->name, room->ant_nb, room->neighbors);
+			// ft_putendl(room->name);
+			// ft_putnbr(room->ant_nb);
+			rooms = rooms->next;
+			i++;
+		}
+	}
 }

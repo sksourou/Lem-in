@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "stdio.h"
 
 void		list_add_next(t_list **list, t_list *link)
 {
