@@ -80,8 +80,6 @@ void	print_rooms(t_list *rooms)
 		{
 			room = rooms->data;
 			printf("ROOM[%d] = name: %s, ant_nb = %d, neightbors_ptr = %p\n", i, room->name, room->ant_nb, room->neighbors);
-			// ft_putendl(room->name);
-			// ft_putnbr(room->ant_nb);
 			rooms = rooms->next;
 			i++;
 		}
