@@ -12,7 +12,7 @@
 
 NAME = lem_in
 
-SRCS = srcs/main.c srcs/check_map.c srcs/utils.c srcs/tubes.c
+SRCS = srcs/main.c srcs/check_map.c srcs/utils.c
 
 OBJS =		$(SRCS:.c=.o)
 
